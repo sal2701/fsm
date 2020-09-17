@@ -363,8 +363,20 @@ function crossBrowserRelativeMousePos(e) {
 
 function output(text) {
 	var element = document.getElementById('output');
+	var copyButton = document.getElementById('copy');
+	copyButton.innerHTML = 'Copy to Clipboard'
+	copyButton.style.display = 'block';
 	element.style.display = 'block';
 	element.value = text;
+}
+
+function copyToClipboard() {
+	var element = document.getElementById("output");
+	element.select();
+	document.execCommand("Copy");
+	
+	var copyButton = document.getElementById('copy');
+	copyButton.innerHTML = 'Copied!'
 }
 
 function saveAsPNG() {
@@ -396,4 +408,32 @@ function saveAsLaTeX() {
 	selectedObject = oldSelectedObject;
 	var texData = exporter.toLaTeX();
 	output(texData);
+}
+
+function retrieveFSM() {
+	saveBackup();
+	var data = JSON.stringify( retrieveFromStorage() );
+	// document.execCommand('copy');
+	output(data);
+}
+
+function loadFSM() {
+	console.log("LOL");
+	var element = document.getElementById('output');
+	var loadButton = document.getElementById('copy');
+	element.value = "";
+	element.placeholder = "Paste JSON";
+	loadButton.innerHTML = "Load FSM";
+	element.style.display = 'block';
+	loadButton.style.display = 'block';
+
+	loadButton.onclick = function () {
+		fsmDescription = element.value;
+		console.log(fsmDescription);
+		loadToStorage(fsmDescription);
+		console.log(localStorage);
+		// canvas.clear();
+		restoreBackup();
+		draw();
+	}
 }

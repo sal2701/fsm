@@ -96,3 +96,25 @@ function saveBackup() {
 
 	localStorage['fsm'] = JSON.stringify(backup);
 }
+
+function retrieveFromStorage() {
+	if( !localStorage || !JSON ) {
+		return;
+	}
+
+	try {
+		var fsmDescription = JSON.parse(localStorage['fsm']);
+		console.log(fsmDescription);
+	} catch(e) {
+		console.log(e);
+	}
+	return fsmDescription;
+}
+
+function loadToStorage(data) {
+	if( !localStorage || !JSON ) {
+		return;
+	}
+	localStorage.clear();
+	localStorage['fsm'] = data;
+}
