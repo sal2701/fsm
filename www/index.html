@@ -107,7 +107,10 @@ if (typeof btoa == 'undefined') {
 	</canvas>
 	<div>
 		<p class="center"><b>Export as:</b> <a href="javascript:saveAsPNG()">PNG</a> | <a href="javascript:saveAsSVG()">SVG</a> | <a href="javascript:saveAsLaTeX()">LaTeX</a> | <a href="javascript:retrieveFSM()">JSON</a> <br> <b>Import as:</b> <a href="javascript:loadFSM()">JSON</a></p>
-		<p style="display: flex; justify-content: center;"><button id="copy" onclick="javascript:copyToClipboard()">Copy</button></p>
+		<p style="display: flex; justify-content: center;">
+			<button id="copy" onclick="javascript:copyToClipboard()">Copy</button>
+			<button class="center" onclick="javascript:clearCanvas()">Clear Canvas</button>
+		</p>
 		<textarea id="output"></textarea>
 		<p>The big white box above is the FSM designer.&nbsp; Here's how to use it:</p>
 		<ul>
@@ -115,12 +118,18 @@ if (typeof btoa == 'undefined') {
 			<li><b>Add an arrow:</b> shift-drag on the canvas</li>
 			<li><b>Move something:</b> drag it around</li>
 			<li><b>Delete something:</b> click it and press the delete key (not the backspace key)</li>
-		</ul><ul>
+		</ul>
+		<ul>
 			<li><b>Make accept state:</b> double-click on an existing state</li>
 			<li><b>Type numeric subscript:</b> put an underscore before the number (like "S_0")</li>
 			<li><b>Type greek letter:</b> put a backslash before it (like "\beta")</li>
 		</ul>
+		<ul>
+			<li><b>Retrieve a fsm:</b> Click "export as JSON" and copy the json object.</li>
+			<li><b>Load a fsm:</b> Clear canvas. Click "import as JSON".</li>
+		</ul>
 		<p>This was made in HTML5 and JavaScript using the canvas element.</p>
 	</div>
 	<p>Created by <a href="http://madebyevan.com/">Evan Wallace</a> in 2010</p>
+	<p>Modified by <a href="https://github.com/sal2701">Saiakash</a> in 2020</p>
 </body></html>
