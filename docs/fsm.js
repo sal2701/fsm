@@ -440,7 +440,8 @@ function saveAsLaTeX() {
 
 function retrieveFSM() {
 	saveBackup();
-	var data = JSON.stringify( retrieveFromStorage() );
+	var data = ''
+	data = JSON.stringify( retrieveFromStorage() );
 	// document.execCommand('copy');
 	output(data);
 }
@@ -456,14 +457,22 @@ function loadFSM() {
 	loadButton.style.display = 'block';
 
 	loadButton.onclick = function () {
+		// clearCanvas();
+		fsmDescription = ''
 		fsmDescription = element.value;
 		console.log(fsmDescription);
 		loadToStorage(fsmDescription);
 		console.log(localStorage);
-		// canvas.clear();
 		restoreBackup();
 		draw();
 	}
+}
+
+function clearCanvas() {
+	console.log('cleared');
+
+	localStorage['fsm'] = '';
+	location.reload();
 }
 
 function restoreBackup() {
@@ -472,7 +481,8 @@ function restoreBackup() {
 	}
 
 	try {
-		var backup = JSON.parse(localStorage['fsm']);
+		var backup = '';
+		backup = JSON.parse(localStorage['fsm']);
 
 		for(var i = 0; i < backup.nodes.length; i++) {
 			var backupNode = backup.nodes[i];
@@ -562,6 +572,7 @@ function saveBackup() {
 		}
 	}
 
+	localStorage['fsm'] = '';
 	localStorage['fsm'] = JSON.stringify(backup);
 }
 
@@ -571,7 +582,8 @@ function retrieveFromStorage() {
 	}
 
 	try {
-		var fsmDescription = JSON.parse(localStorage['fsm']);
+		var fsmDescription = '';
+		fsmDescription = JSON.parse(localStorage['fsm']);
 		console.log(fsmDescription);
 	} catch(e) {
 		console.log(e);

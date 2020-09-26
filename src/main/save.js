@@ -4,7 +4,8 @@ function restoreBackup() {
 	}
 
 	try {
-		var backup = JSON.parse(localStorage['fsm']);
+		var backup = '';
+		backup = JSON.parse(localStorage['fsm']);
 
 		for(var i = 0; i < backup.nodes.length; i++) {
 			var backupNode = backup.nodes[i];
@@ -94,6 +95,7 @@ function saveBackup() {
 		}
 	}
 
+	localStorage['fsm'] = '';
 	localStorage['fsm'] = JSON.stringify(backup);
 }
 
@@ -103,7 +105,8 @@ function retrieveFromStorage() {
 	}
 
 	try {
-		var fsmDescription = JSON.parse(localStorage['fsm']);
+		var fsmDescription = '';
+		fsmDescription = JSON.parse(localStorage['fsm']);
 		console.log(fsmDescription);
 	} catch(e) {
 		console.log(e);

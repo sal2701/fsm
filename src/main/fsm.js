@@ -412,7 +412,8 @@ function saveAsLaTeX() {
 
 function retrieveFSM() {
 	saveBackup();
-	var data = JSON.stringify( retrieveFromStorage() );
+	var data = ''
+	data = JSON.stringify( retrieveFromStorage() );
 	// document.execCommand('copy');
 	output(data);
 }
@@ -428,12 +429,20 @@ function loadFSM() {
 	loadButton.style.display = 'block';
 
 	loadButton.onclick = function () {
+		// clearCanvas();
+		fsmDescription = ''
 		fsmDescription = element.value;
 		console.log(fsmDescription);
 		loadToStorage(fsmDescription);
 		console.log(localStorage);
-		// canvas.clear();
 		restoreBackup();
 		draw();
 	}
+}
+
+function clearCanvas() {
+	console.log('cleared');
+
+	localStorage['fsm'] = '';
+	location.reload();
 }
